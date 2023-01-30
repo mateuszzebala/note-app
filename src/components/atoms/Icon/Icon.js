@@ -1,5 +1,4 @@
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
 
 const StyledIcon = styled.span`
@@ -8,7 +7,7 @@ const StyledIcon = styled.span`
 
 const Icon = ({icon}) => {
     return (
-        <StyledIcon><FontAwesomeIcon icon={icon}/></StyledIcon>
+        <StyledIcon><icon/></StyledIcon>
     )
 }
 

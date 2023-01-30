@@ -7,11 +7,14 @@ const StyledLinkWrapper = styled.span`
         text-decoration: none;
         padding: 4px;
         display: inline-block;
+        font-size: ${({font})=>font || '15px'};
+        font-weight: ${({fontWeight})=>fontWeight || '300'};
         &::after{
             content: '';
             display: block;
             width: 0;
             border-radius: 10px;
+            margin: auto;
             height: 2px;
             transition:  width 0.3s;
             background-color: ${({theme})=>theme.primary};
@@ -25,9 +28,9 @@ const StyledLinkWrapper = styled.span`
     display: block;
 `
 
-const Link = ({to, children, ...props}) => {
+const Link = ({to, children, font, fontWeight, ...props}) => {
     return (
-        <StyledLinkWrapper>
+        <StyledLinkWrapper font={font} fontWeight={fontWeight}>
             <RouterLink {...props} to={to}>{children}</RouterLink>
         </StyledLinkWrapper>
     )
