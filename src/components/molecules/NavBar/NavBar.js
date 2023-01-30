@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import { routes } from "../../../routes";
-import {FiLogIn, FiLogOut, FiUser} from "react-icons/fi"
-import {MdStickyNote2} from "react-icons/md"
+import {FiLogOut} from "react-icons/fi"
+import {FaRegStickyNote} from "react-icons/fa"
 import Link from "../../atoms/Link/Link";
 import { NavLink } from "react-router-dom";
-import { AiOutlineLogin } from "react-icons/ai";
 
 const StyledNav = styled.nav`
     background-color: ${({theme})=>theme.primary};
@@ -60,7 +59,7 @@ const NavBar = () => {
                 <Link font="35px" fontWeight={700} to={routes.notes}>NOTE</Link>
             </StyledHeader>
             <StyledLinks>
-                <NavLink to={routes.notes}><MdStickyNote2/></NavLink>
+                <NavLink to={routes.notes}><FaRegStickyNote/></NavLink>
             </StyledLinks>
             <StyledFooter>
                 <NavLink to={routes.logout}><FiLogOut/></NavLink>

@@ -12,7 +12,7 @@ const themes = [
         font: "#373636"
     },
     {
-        primary: "#db675a",
+        primary: "#f57758",
         font: "#373636"
     }
 ]

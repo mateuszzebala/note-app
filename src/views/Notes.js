@@ -9,10 +9,12 @@ import Model from '../components/atoms/Model/Model'
 import Input from "../components/atoms/Input/Input";
 import Heading from "../components/atoms/Heading/Heading";
 import { API, POST } from "../api";
+import { useNavigate } from "react-router-dom";
+import { routes } from "../routes";
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   gap: 20px;
   padding: 30px 30px;
 `
@@ -48,12 +50,18 @@ function Notes() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [search, setSearch] = useState("");
+  const navigate = useNavigate()
 
   useEffect(()=>{
     POST(API.NOTES).then(res => {
       setNotes(res.data.notes)
     }).catch(err => {})
-  }, [])
+    POST(API.INFO).then(res => {
+      if(res.data.user === null){
+          navigate(routes.signin)
+      }
+  })
+  }, [navigate])
 
   function handleSearchChange(e){
     POST(API.SEARCH, {
@@ -77,7 +85,8 @@ function Notes() {
         setNotes(res.data.notes)
       }).catch(err => {})
     })
-
+    setTitle("")
+    setContent("")
     setShowNewNote(false)
   }
 
@@ -89,7 +98,7 @@ function Notes() {
           <SearchInput onChange={handleSearchChange} value={search} setValue={setSearch}/>
         </StyledTopBar>
         <StyledGrid>
-          {notes.map(item => (
+          {notes && notes.map(item => (
             <NoteCard 
               id={item.id} 
               title={item.title} 

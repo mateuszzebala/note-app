@@ -7,8 +7,10 @@ const StyledWrapper = styled.div`
     box-shadow: 0 0 10px -7px #000;
     border-radius: 10px;
     display: inline-block;
-    min-width: 200px;
-    min-height: 200px;
+    min-width: 320px;
+    min-height: 230px;
+    max-height: 230px;
+    max-width: 320px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
     &:hover{
@@ -21,8 +23,8 @@ const StyledHeader = styled.header`
     border-radius: 10px 10px 0 0;
     padding: 5px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    text-transform: uppercase;
 `
 
 
@@ -30,6 +32,9 @@ const StyledHeader = styled.header`
 
 const StyledContent = styled.main`
     padding: 10px;
+    overflow: hidden;
+    max-height: 80%;
+    text-overflow: ellipsis;
 `
 
 const NoteCard = ({id, content, title, ...props}) => {
@@ -41,7 +46,7 @@ const NoteCard = ({id, content, title, ...props}) => {
     return (
         <StyledWrapper onClick={handleCardClick}>
             <StyledHeader>
-                <Heading font='25px'>{title}</Heading>
+                <Heading fontWeight={500} font='25px'>{title}</Heading>
             </StyledHeader>
             <StyledContent>
                 <Paragraph>{content}</Paragraph>

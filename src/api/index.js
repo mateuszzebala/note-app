@@ -18,6 +18,7 @@ const API = {
 	CSRF: API_URL + '/csrf/'
 }
 
+
 let _csrfToken = null;
 
 async function CSRF() {

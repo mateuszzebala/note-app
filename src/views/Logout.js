@@ -8,7 +8,7 @@ const Logout = () => {
     POST(API.LOGOUT)
     useEffect(()=>{
         navigate(routes.signin)
-    }, [])
+    }, [navigate])
     return (
         <>
         

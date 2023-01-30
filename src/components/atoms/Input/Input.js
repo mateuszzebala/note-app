@@ -7,7 +7,7 @@ const StyledWrapper = styled.label`
     justify-content: flex-start;
     gap: 0px;
     font-size: 25px;
-    border-bottom: 4px solid ${({ theme }) => theme.primary};
+    border-bottom: 4px solid ${({ theme, error }) => error ? "red" : theme.primary};
     border-radius: 5px 5px 0 0;
     min-width: 350px;
     max-width: 350px;
@@ -36,6 +36,7 @@ const StyledTextarea = styled.textarea`
     resize: none;
     padding: 15px 10px;
     font-weight: 300;
+    width: 100%;
     min-height: 200px;
     font-size: 20px;
     transform: translateY(5px);
@@ -75,13 +76,13 @@ const StyledPlaceHolder = styled.span`
 `
 
 
-const Input = ({label, value, setValue, change, icon, textarea, children, ...props }) => {
+const Input = ({label, error, value, setValue, change, icon, textarea, children, ...props }) => {
     const [inputValue, setInputValue] = useState("");
     const [focus, setFocus] = useState("");
 
     useEffect(() => {
         if(inputValue !== "" || value) setFocus(true)
-    }, []);
+    }, [inputValue, value]);
 
     function handleInputChange(e){
         let val = e.target.value
@@ -103,10 +104,11 @@ const Input = ({label, value, setValue, change, icon, textarea, children, ...pro
     const Tag = textarea ? StyledTextarea : StyledInput
     return (
         
-        <StyledWrapper>
+        <StyledWrapper error={error}>
             <StyledIcon>{icon && icon}</StyledIcon>
             <StyledPlaceHolder icon={icon} focus={focus}>{label}</StyledPlaceHolder>
             <Tag
+                
                 onBlur={handleInputBlur}  
                 onFocus={handleInputFocus}  
                 value={value ? value : inputValue} 

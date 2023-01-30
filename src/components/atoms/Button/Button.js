@@ -12,7 +12,7 @@ const StyledButton = styled.button`
     height: ${({size})=>(size || "55px")};
     overflow: hidden;
     display: inline-flex;
-    cursor: pointer;
+    cursor: ${({loading})=>loading ? 'wait' : 'pointer'};
     align-items: center;
     justify-content: center;
     text-decoration: none;
@@ -101,6 +101,7 @@ const Button = ({ to, children, secondary, loading, icon, onClick, ...props }) =
                 icon={icon}
                 onClick={handleButtonClick}
                 secondary={secondary}
+                loading={loading}
                 {...props}
             >{loading ? <LoadingIcon><VscLoading/></LoadingIcon> : content}</StyledButton> : (
                 <>

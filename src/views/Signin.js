@@ -31,6 +31,8 @@ function Signin() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [buttonLoading, setButtonLoading] = useState(false)
+    const [badData, setBadData] = useState(false)
+
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -39,7 +41,7 @@ function Signin() {
                 navigate(routes.notes)
             }
         })
-    }, [])
+    }, [navigate])
 
     function handleLogIn(e){
         setButtonLoading(true)
@@ -49,6 +51,9 @@ function Signin() {
         }).then(res => {
             if(res.data.done === true){
                 navigate(routes.notes)
+            }
+            else{
+                setBadData(true)
             }
             setButtonLoading(false)
         }).catch(err => {
@@ -60,8 +65,8 @@ function Signin() {
     <StyledBackground>
         <StyledForm>
             <Heading>SIGN IN</Heading>
-            <Input value={username} setValue={setUsername} label="Username"/>
-            <Input value={password} setValue={setPassword} label="Password" type="password"/>
+            <Input error={badData} value={username} setValue={setUsername} label="Username"/>
+            <Input error={badData} value={password} setValue={setPassword} label="Password" type="password"/>
             <Button loading={buttonLoading} onClick={handleLogIn}>SIGN IN</Button>
             <Link to={routes.signup}>SIGN UP</Link>
         </StyledForm>

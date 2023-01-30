@@ -13,7 +13,6 @@ import Logout from "./Logout";
 
 const Root = () => {
     const [theme, setTheme] = useState({})
-
     useEffect(() => {
         setTheme(themes[0])
         window.addEventListener("keyup", e=>{
